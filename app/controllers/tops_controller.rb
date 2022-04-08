@@ -4,7 +4,7 @@ ITEMS_PER_PAGE ||= 30
 FIRST_PAGE ||= 0
 
 class TopsController < ApplicationController
-  def show
+  def index
     @page = params[:page]&.to_i || FIRST_PAGE
     @total_pages = TopItem.count / ITEMS_PER_PAGE
     @stories = TopItem.order(:location)
