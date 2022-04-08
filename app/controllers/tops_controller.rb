@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 ITEMS_PER_PAGE ||= 30
 
 class TopsController < ApplicationController
@@ -7,6 +8,7 @@ class TopsController < ApplicationController
                       .limit(ITEMS_PER_PAGE)
                       .includes(:item)
   end
+
   def create
     LoadTopItemsJob.perform_now
   end
