@@ -10,7 +10,7 @@ class TopsController < ApplicationController
     @stories = TopItem.order(:location)
                       .limit(ITEMS_PER_PAGE)
                       .offset(@page * ITEMS_PER_PAGE)
-                      .includes(:item)
+    @top_item = TopItem.order(:updated_at).last
   end
 
   def create

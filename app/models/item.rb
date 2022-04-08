@@ -2,6 +2,8 @@
 
 class Item < ApplicationRecord
   has_one :top_item
+  after_save :update_associates
+  broadcasts
   enum hn_type: %i[story job]
 
   def populate(json)
@@ -22,5 +24,9 @@ class Item < ApplicationRecord
         time: (DateTime.strptime((json['time']).to_s, '%s') if json['time'])
       }.compact_blank
     )
+  end
+
+  def update_associates
+    top_item&.touch
   end
 end
