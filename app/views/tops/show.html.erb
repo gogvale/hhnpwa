@@ -1,8 +1,10 @@
 <div class=" w-3/4 mx-auto p-4">
   <header class="bg-red-600 py-1 px-3 text-white flex">
     <p class=" text-2xl flex-grow">Top Stories</p>
-    <%= link_to "Refresh", tops_path, method: :post, class: "pt-1" %>
+    <%= link_to "Refresh", top_path(@page), method: :post, class: "pt-1" %>
   </header>
+<!--  TODO: Replace with Pagy or similar-->
+  <%= render partial: 'layouts/page_navigation', locals: { page: @page, total_pages: @total_pages, path: top_path(@page) } %>
   <div class="grid grid-cols-3 gap-4">
     <%= render @stories %>
   </div>
