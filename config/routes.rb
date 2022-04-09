@@ -2,6 +2,8 @@
 
 Rails.application.routes.draw do
   root "tops#index"
-  resources :items
+  resources :items do
+    resources :comments
+  end
   resources :tops
 end
